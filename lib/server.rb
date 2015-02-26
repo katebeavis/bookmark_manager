@@ -1,14 +1,13 @@
 require 'sinatra/base'
 require 'data_mapper'
 require 'rack-flash'
+require './lib/link'
+require './lib/tag'
+require './lib/user'
 
 env = ENV['RACK_ENV'] || 'development'
 
 DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
-
-require './lib/link'
-require './lib/tag'
-require './lib/user'
 
 DataMapper.finalize
 
@@ -19,6 +18,7 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
   set :session_secret, 'super secret'
   use Rack::Flash
+  use Rack::MethodOverride
 
   get '/' do
     @links = Link.all
@@ -58,6 +58,28 @@ class BookmarkManager < Sinatra::Base
       erb :"users/new"
     end
   end
+
+  get '/sessions/new' do
+    erb :"sessions/new"
+  end
+
+  delete '/sessions' do
+    session.clear
+    flash[:notice] = "Goodbye!"
+  end
+
+  post '/sessions' do
+    email, password = params[:email], params[:password]
+    user = User.authenticate(email, password)
+    if user
+      session[:user_id] = user.id
+      redirect to ('/')
+    else
+      flash[:errors] = ["The email or password is incorrect"]
+      erb :"sessions/new"
+    end
+  end
+
 
     helpers do
 
