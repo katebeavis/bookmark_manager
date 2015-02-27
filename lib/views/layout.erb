@@ -1,4 +1,11 @@
-<body>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bookmark Manager</title>
+		<link rel="stylesheet" type="text/css" href="/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+	</head>
+	<body>
 	<% if current_user %>
 		Welcome, <%= current_user.email %>
 		<form method="post" action="/sessions">
@@ -20,4 +27,5 @@
 	</ul>
 	<% end %>
 	<%= yield %>
-</body>
+	</body>
+</html>
