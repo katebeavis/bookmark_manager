@@ -5,7 +5,6 @@ require './lib/link'
 require './lib/tag'
 require './lib/user'
 require 'sinatra/partial'
-require 'byebug'
 
 require './lib/controllers/users'
 require './lib/controllers/sessions'
@@ -21,13 +20,12 @@ DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 DataMapper.finalize
 
 class BookmarkManager < Sinatra::Base
-
   helpers ApplicationHelpers
 
-  set :public_folder, Proc.new { 
-    File.join(root, '..', '..', "public")
+  set :public_folder, proc {
+    File.join(root, '..', '..', 'public')
   }
-  set :views, Proc.new { File.join(root, "..", "views") }
+  set :views, proc { File.join(root, '..', 'views') }
   # set :public_folder, 'public'
 
   enable :sessions

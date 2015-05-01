@@ -2,25 +2,25 @@
 <html>
 	<head>
 		<title>Bookmark Manager</title>
-		<link rel="stylesheet" type="text/css" href="/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<link rel='stylesheet' type='text/css' href='/css/reset.css'>
+		<link rel='stylesheet' type='text/css' href='/css/style.css'>
 	</head>
 	<body>
 	<% if current_user %>
 		Welcome, <%= current_user.email %>
-		<form method="post" action="/sessions">
-			<input type="hidden" name="_method" value="delete">
-			<input type="submit" value="Sign Out">
+		<form method='post' action='/sessions'>
+			<input type='hidden' name='_method' value='delete'>
+			<input type='submit' value='Sign Out'>
 		</form>
 	<% end %>
 	<% if flash[:notice] %>
-		<div id="notice">
+		<div id='notice'>
 			<%= flash[:notice] %>
 		</div>
 	<% end %>
 	<% if flash[:errors] && !flash[:errors].empty? %>
 	Sorry, there were the following problems with the form.
-	<ul id="errors">
+	<ul id='errors'>
 		<% flash[:errors].each do |error| %>
 			<li><%= error %></li>
 		<% end %>

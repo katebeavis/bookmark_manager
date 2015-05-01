@@ -1,6 +1,6 @@
-ENV["RACK_ENV"] = 'test'
+ENV['RACK_ENV'] = 'test'
 
-require './server' 
+require './server'
 require 'database_cleaner'
 require 'capybara/rspec'
 
@@ -25,5 +25,4 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-
 end

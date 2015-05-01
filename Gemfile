@@ -1,4 +1,4 @@
- source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'data_mapper'
@@ -11,6 +11,7 @@ gem 'sinatra-partial'
 
 group :development do
   gem 'byebug'
+  gem 'launchy'
 end
 
 group :test do

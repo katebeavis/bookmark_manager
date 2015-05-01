@@ -1,15 +1,15 @@
-<a href="/users/new">Sign Up</a>
-<a href="/sessions/new">Log In</a>
-<div id="new-link">
-	<form action="/links" method="post">
-		Url: <input type="text" name="url">
-		Title: <input type="text" name="title">
-		Tags: <input type="text" name="tags">
-		<input type="submit" value="Add link">
+<a href='/users/new'>Sign Up</a>
+<a href='/sessions/new'>Log In</a>
+<div id='new-link'>
+	<form action='/links' method='post'>
+		Url: <input type='text' name='url'>
+		Title: <input type='text' name='title'>
+		Tags: <input type='text' name='tags'>
+		<input type='submit' value='Add link'>
 		<ul>
 		Popular Links:
 	<% @links.each do |link| %>
-		<li><a href="<%= link.url %>"><%= link.title %></a></li>
+		<li><a href='<%= link.url %>'><%= link.title %></a></li>
 	<% end %>
 </ul>
 	</form>
